@@ -19,8 +19,16 @@
   }
 }
 
+
+html,
 body {
-  background: var(--background);
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url('/fondo-new.jpg') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
