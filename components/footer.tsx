@@ -6,7 +6,7 @@ import { Twitter, Github, Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 bg-[#1a1e26] border-t border-slate-800">
+    <footer className="relative z-20 bg-slate-900/95 backdrop-blur-lg border-t border-white/10">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-8">
           {/* Left Column - Zentrais Info */}
@@ -21,9 +21,14 @@ export default function Footer() {
               />
               <span className="text-white font-bold text-xl font-sans">Zentrais</span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed font-sans">
-              Zentrais is a digital space for the exploratory thinker, achieving deep digital integrity through authentic Human-AI symbiosis.
-            </p>
+            <div className="space-y-2">
+              <p className="text-slate-400 text-sm leading-relaxed font-sans">
+                © 2025 Zentrais, Inc. All rights reserved.
+              </p>
+              <p className="text-slate-400 text-sm leading-relaxed font-sans">
+                Built on Truth, Trust, and Transparency.
+              </p>
+            </div>
             <div className="flex items-center gap-4">
               <a 
                 href="https://twitter.com/zentrais" 
@@ -95,7 +100,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-slate-800 pt-8 space-y-4">
+        <div className="border-t border-white/10 pt-8 space-y-4">
           <p className="text-slate-400 italic text-sm font-sans text-center md:text-left">
             Zentrais is redefining how stories of truth are told: through integrity, transparency, and human connection.
           </p>

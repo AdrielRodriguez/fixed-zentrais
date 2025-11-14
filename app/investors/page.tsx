@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { Button } from '../../components/ui/button';
-import { ArrowRight, Download, Mail, Play, Users, Zap, DollarSign, Calendar, Star } from 'lucide-react';
+import { ArrowRight, Download, Mail, Play, Users, Zap, DollarSign, Calendar, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import Footer from '../../components/footer';
 import { useLanguage } from '../../contexts/language-context';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Componente de contador animado
 function AnimatedCounter({ end, suffix = '', duration = 2000 }: { end: number; suffix?: string; duration?: number }) {
@@ -59,6 +61,18 @@ export default function InvestorsPage() {
     email: '',
     comments: '',
   });
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+
+  // Generar partículas suaves
+  useEffect(() => {
+    const newParticles = Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 5,
+    }));
+    setParticles(newParticles);
+  }, []);
 
   const timelineMilestones = [
     {
@@ -88,18 +102,49 @@ export default function InvestorsPage() {
       name: 'Levi Ezagui',
       role: 'Founder, CEO & Chief Vision Officer',
       bio: "Drives Zentrais' global vision and scale — turning the Integrity Economy from concept into infrastructure.",
+      image: "/Levi Ezagui Picture #1.jpg",
     },
     {
       name: 'Antonio Lovera',
       role: 'Co-Founder, CTO & Chief Brand Architect',
       bio: 'Fuses technology and storytelling to make integrity the core operating system of human-AI collaboration.',
+      image: "/Antonio Lovera Portrait 3.jpeg",
     },
     {
       name: 'David Shagalov',
       role: 'Co-Founder, COO & Chief Integrity Officer',
       bio: 'Builds ethical systems and operational frameworks that keep integrity measurable, actionable, and alive.',
+      image: "/David Shagalov Picture #2.jpg",
+    },
+    {
+      name: 'Declan O\'Beirne',
+      role: 'CFO & Chief Prosperity Officer',
+      bio: 'Aligns finance with purpose — driving transparency, growth, and sustainable value across the Integrity Economy.',
+      image: "/Declan O'Beirne  Picture #1.jpg",
     },
   ];
+
+  // Función para obtener la URL codificada de la imagen
+  const getImageUrl = (imagePath: string) => {
+    // Codificar solo los espacios y caracteres especiales, manteniendo la estructura de la ruta
+    return imagePath.split('/').map(part => 
+      part === '' ? '' : encodeURIComponent(part)
+    ).join('/');
+  };
+
+  const [currentMemberIndex, setCurrentMemberIndex] = useState(0);
+
+  const nextMember = () => {
+    setCurrentMemberIndex((prev) => (prev + 1) % teamMembers.length);
+  };
+
+  const prevMember = () => {
+    setCurrentMemberIndex((prev) => (prev - 1 + teamMembers.length) % teamMembers.length);
+  };
+
+  const goToMember = (index: number) => {
+    setCurrentMemberIndex(index);
+  };
 
   const handleDataRoom = () => {
     window.location.href = 'mailto:investors@zentrais.com?subject=Data Room Access Request';
@@ -114,7 +159,31 @@ export default function InvestorsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#151515' }}>
+      {/* Fondo animado sutil */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Partículas suaves flotantes */}
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute w-1 h-1 bg-white rounded-full opacity-25 animate-float"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              animationDelay: `${particle.delay}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+            }}
+          />
+        ))}
+        
+        {/* Líneas de flujo sutiles */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" />
+          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400/30 to-transparent animate-flow" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" style={{ animationDelay: '4s' }} />
+        </div>
+      </div>
+
       {/* Investing in Integrity Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-5xl mx-auto text-center">
@@ -188,7 +257,7 @@ export default function InvestorsPage() {
                 For early adopters driving high-growth innovation in trust and technology.
               </p>
               <div className="mt-auto">
-                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors">
+                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors cursor-pointer">
                   Learn More
                 </button>
               </div>
@@ -203,7 +272,7 @@ export default function InvestorsPage() {
                 For investors aligning capital with measurable ethical, and social impact.
               </p>
               <div className="mt-auto">
-                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors">
+                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors cursor-pointer">
                   Learn More
                 </button>
               </div>
@@ -218,7 +287,7 @@ export default function InvestorsPage() {
                 For Stewards of long-term value and intergenerational trust.
               </p>
               <div className="mt-auto">
-                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors">
+                <button className="text-pink-500 hover:text-pink-400 underline font-semibold text-sm sm:text-base font-sans transition-colors cursor-pointer">
                   Learn More
                 </button>
               </div>
@@ -440,7 +509,7 @@ export default function InvestorsPage() {
 
       {/* The Team Behind the Transformation Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white leading-tight font-sans">
               The Team Behind the{' '}
@@ -448,46 +517,102 @@ export default function InvestorsPage() {
             </h2>
           </div>
 
-          {/* Team Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {teamMembers.map((member, index) => {
-              const initials = member.name
-                .split(' ')
-                .map(n => n[0])
-                .join('')
-                .toUpperCase();
-              
-              return (
-                <div
-                  key={index}
-                  className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 hover:border-pink-400/30 transition-all duration-300 hover:scale-105 hover:shadow-xl"
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Team Card */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 md:p-12 hover:border-pink-400/30 transition-all duration-300 hover:shadow-xl min-h-[400px] flex flex-col items-center justify-center overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentMemberIndex}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col items-center justify-center w-full"
                 >
-                  {/* Avatar Circle with Gradient */}
-                  <div className="flex justify-center mb-6">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-sky-400 flex items-center justify-center">
-                      <span className="text-white text-2xl sm:text-3xl font-bold font-sans">
-                        {initials}
-                      </span>
-                    </div>
-                  </div>
+                  {(() => {
+                    const member = teamMembers[currentMemberIndex];
+                    
+                    return (
+                      <>
+                        {/* Avatar Circle with Image */}
+                        <div className="flex justify-center mb-6">
+                          <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-2 border-pink-500/30 shadow-lg relative bg-slate-800/50">
+                            <img
+                              src={getImageUrl(member.image)}
+                              alt={member.name}
+                              className="w-full h-full object-cover"
+                              style={{ 
+                                display: 'block',
+                                margin: '0 auto',
+                                objectPosition: member.name === 'Levi Ezagui' 
+                                  ? 'center 10%' 
+                                  : (member.name === 'Antonio Lovera' || member.name === 'David Shagalov' || member.name === 'Declan O\'Beirne')
+                                  ? 'center 15%'
+                                  : 'center center'
+                              }}
+                              loading={currentMemberIndex === 0 ? "eager" : "lazy"}
+                              onError={(e) => {
+                                console.error('Error loading image:', member.image);
+                                // Intentar con la ruta original sin codificar
+                                e.currentTarget.src = member.image;
+                              }}
+                            />
+                          </div>
+                        </div>
 
-                  {/* Name */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 text-center font-sans">
-                    {member.name}
-                  </h3>
+                        {/* Name */}
+                        <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 text-center font-sans">
+                          {member.name}
+                        </h3>
 
-                  {/* Title */}
-                  <p className="text-pink-500 text-sm sm:text-base font-semibold mb-4 text-center font-sans">
-                    {member.role}
-                  </p>
+                        {/* Title */}
+                        <p className="text-pink-500 text-base sm:text-lg font-semibold mb-4 text-center font-sans">
+                          {member.role}
+                        </p>
 
-                  {/* Description */}
-                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed text-center font-sans">
-                    {member.bio}
-                  </p>
-                </div>
-              );
-            })}
+                        {/* Description */}
+                        <p className="text-gray-300 text-base sm:text-lg leading-relaxed text-center font-sans max-w-2xl">
+                          {member.bio}
+                        </p>
+                      </>
+                    );
+                  })()}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Navigation Buttons */}
+            <button
+              onClick={prevMember}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 sm:-translate-x-8 md:-translate-x-12 bg-pink-500/80 hover:bg-pink-500 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 shadow-lg z-10"
+              aria-label="Previous member"
+            >
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+            <button
+              onClick={nextMember}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 sm:translate-x-8 md:translate-x-12 bg-pink-500/80 hover:bg-pink-500 text-white rounded-full p-2 sm:p-3 transition-all duration-300 hover:scale-110 shadow-lg z-10"
+              aria-label="Next member"
+            >
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="flex justify-center gap-2 mt-8">
+              {teamMembers.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToMember(index)}
+                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                    index === currentMemberIndex
+                      ? 'bg-pink-500 w-8 sm:w-10'
+                      : 'bg-white/30 hover:bg-white/50'
+                  }`}
+                  aria-label={`Go to member ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -609,15 +734,6 @@ export default function InvestorsPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer Statement */}
-      <footer className="relative z-10 border-t border-indigo-400/20 bg-slate-900/95 backdrop-blur-lg">
-        <div className="container mx-auto px-6 py-12 text-center">
-          <p className="text-2xl md:text-3xl font-semibold text-indigo-200 font-sans">
-            {t('investors.footer')}
-          </p>
-        </div>
-      </footer>
 
       <style jsx>{`
         @keyframes gridMove {

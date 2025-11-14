@@ -9,8 +9,8 @@ import Footer from '../../components/footer';
 import { useLanguage } from '../../contexts/language-context';
 
 export default function UserPage() {
-  const router = useRouter();
   const { t } = useLanguage();
+  const router = useRouter();
 
   const carouselSlides = [
     {
@@ -100,7 +100,7 @@ export default function UserPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white relative overflow-hidden">
+    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#151515' }}>
       {/* Partículas de luz de fondo */}
       <div className="fixed inset-0 pointer-events-none z-0">
         {particles.map((particle) => (
@@ -175,7 +175,7 @@ export default function UserPage() {
                 }}
               >
                 <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-blue-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300">
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-blue-400/60"></div>
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-blue-400/60" style={{ backgroundColor: '#151515' }}></div>
                   <div className="w-full h-full rounded-[2rem] border-2 border-blue-400/40 bg-blue-500/20 backdrop-blur-sm flex flex-col items-center justify-center pt-6 pb-6">
                     <Image
                       src="/icon.png"
@@ -218,7 +218,7 @@ export default function UserPage() {
                 }}
               >
                 <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-emerald-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300">
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-emerald-400/60"></div>
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-emerald-400/60" style={{ backgroundColor: '#151515' }}></div>
                   <div className="w-full h-full rounded-[2rem] border-2 border-emerald-400/40 bg-emerald-500/20 backdrop-blur-sm flex flex-col">
                     <div className="pt-6 pb-4 flex justify-center">
                       <Image
@@ -268,7 +268,7 @@ export default function UserPage() {
                 }}
               >
                 <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-orange-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-orange-400 hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-300">
-                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-orange-400/60"></div>
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-orange-400/60" style={{ backgroundColor: '#151515' }}></div>
                   <div className="w-full h-full rounded-[2rem] border-2 border-orange-400/40 bg-orange-400/20 backdrop-blur-sm flex flex-col">
                     <div className="pt-6 pb-4 flex justify-center">
                       <Image
@@ -375,18 +375,15 @@ export default function UserPage() {
               </div>
             </div>
 
-            {/* Right Section - Phone Mockup with Gradient */}
+            {/* Right Section - Phone Mockup */}
             <div className="flex items-center justify-center lg:justify-end">
               <div className="relative w-full max-w-md">
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-fuchsia-500 via-purple-600 to-pink-500 rounded-3xl opacity-90"></div>
-                
                 {/* Phone mockup */}
                 <div className="relative w-64 sm:w-72 mx-auto">
                   <div className="relative bg-slate-900 rounded-[2.5rem] p-2 border-4 border-slate-800 shadow-2xl">
-                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] bg-slate-950 overflow-hidden flex flex-col">
+                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] overflow-hidden flex flex-col" style={{ backgroundColor: '#151515' }}>
                       {/* Notch */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-slate-800 z-10"></div>
+                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-slate-800 z-10" style={{ backgroundColor: '#151515' }}></div>
                       
                       {/* Content */}
                       <div className="flex-1 flex flex-col items-center justify-center px-6 py-12">
@@ -428,9 +425,9 @@ export default function UserPage() {
                 {/* Phone mockup */}
                 <div className="relative w-64 sm:w-72 mx-auto">
                   <div className="relative bg-slate-900 rounded-[2.5rem] p-2 border-4 border-slate-800 shadow-2xl">
-                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] bg-slate-950 overflow-hidden flex flex-col">
+                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] overflow-hidden flex flex-col" style={{ backgroundColor: '#151515' }}>
                       {/* Notch */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-slate-800 z-10"></div>
+                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-slate-800 z-10" style={{ backgroundColor: '#151515' }}></div>
                       
                       {/* Content */}
                       <div className="flex-1 flex flex-col px-6 py-8">
@@ -538,18 +535,15 @@ export default function UserPage() {
               </div>
             </div>
 
-            {/* Right Section - Phone Mockup with Gradient */}
+            {/* Right Section - Phone Mockup */}
             <div className="flex items-center justify-center lg:justify-end">
               <div className="relative w-full max-w-md">
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-500 to-pink-500 rounded-3xl opacity-90"></div>
-                
                 {/* Phone mockup */}
                 <div className="relative w-64 sm:w-72 mx-auto">
                   <div className="relative bg-slate-900 rounded-[2.5rem] p-2 border-4 border-slate-800 shadow-2xl">
-                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] bg-slate-950 overflow-hidden flex flex-col">
+                    <div className="w-full h-[500px] sm:h-[600px] rounded-[2rem] overflow-hidden flex flex-col" style={{ backgroundColor: '#151515' }}>
                       {/* Notch */}
-                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-slate-800 z-10"></div>
+                      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-slate-800 z-10" style={{ backgroundColor: '#151515' }}></div>
                       
                       {/* Content */}
                       <div className="flex-1 flex flex-col px-6 py-8">
@@ -638,7 +632,7 @@ export default function UserPage() {
             <div className="text-xl sm:text-2xl font-bold text-blue-300 mb-3 sm:mb-4 font-sans">The Integrity Debate</div>
             <div className="relative">
               <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-blue-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300">
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-blue-400/60"></div>
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-blue-400/60" style={{ backgroundColor: '#151515' }}></div>
                 <div className="w-full h-full rounded-[2rem] border-2 border-blue-400/40 bg-blue-500/20 backdrop-blur-sm flex flex-col items-center justify-center pt-6 pb-6">
                   <Image
                     src="/icon.png"
@@ -661,7 +655,7 @@ export default function UserPage() {
             <div className="text-xl sm:text-2xl font-bold text-emerald-300 mb-3 sm:mb-4 font-sans">Chat</div>
             <div className="relative">
               <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-emerald-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 transition-all duration-300">
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-emerald-400/60"></div>
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-emerald-400/60" style={{ backgroundColor: '#151515' }}></div>
                 <div className="w-full h-full rounded-[2rem] border-2 border-emerald-400/40 bg-emerald-500/20 backdrop-blur-sm flex flex-col">
                   <div className="pt-6 pb-4 flex justify-center">
                     <Image
@@ -693,7 +687,7 @@ export default function UserPage() {
             <div className="text-xl sm:text-2xl font-bold text-blue-300 mb-3 sm:mb-4 font-sans">The Integrity Marketplace</div>
             <div className="relative">
               <div className="relative w-64 sm:w-72 h-[32rem] sm:h-[36rem] border-4 border-orange-400/60 rounded-[2.5rem] bg-transparent p-2 sm:p-3 hover:border-orange-400 hover:shadow-xl hover:shadow-orange-500/30 transition-all duration-300">
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-slate-950 rounded-b-2xl border-b-2 border-orange-400/60"></div>
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-28 h-8 rounded-b-2xl border-b-2 border-orange-400/60" style={{ backgroundColor: '#151515' }}></div>
                 <div className="w-full h-full rounded-[2rem] border-2 border-orange-400/40 bg-orange-400/20 backdrop-blur-sm flex flex-col">
                   <div className="pt-6 pb-4 flex justify-center">
                     <Image

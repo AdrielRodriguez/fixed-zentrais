@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import { Folder, Megaphone, BookOpen, ArrowRight } from 'lucide-react';
@@ -19,6 +19,18 @@ export default function MediaPage() {
     followerCount: '',
     publicationHistory: '',
   });
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+
+  // Generar partículas suaves
+  useEffect(() => {
+    const newParticles = Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 5,
+    }));
+    setParticles(newParticles);
+  }, []);
 
   const handleBecomeCollaborator = () => {
     window.location.href = 'mailto:collaborators@zentrais.com?subject=Become a Collaborator';
@@ -47,7 +59,31 @@ Publication History / Focus Area: ${formData.publicationHistory}
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#151515' }}>
+      {/* Fondo animado sutil */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Partículas suaves flotantes */}
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute w-1 h-1 bg-white rounded-full opacity-25 animate-float"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              animationDelay: `${particle.delay}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+            }}
+          />
+        ))}
+        
+        {/* Líneas de flujo sutiles */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" />
+          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400/30 to-transparent animate-flow" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" style={{ animationDelay: '4s' }} />
+        </div>
+      </div>
+
       {/* Let's Break the Mold Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
@@ -182,7 +218,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
                 Everything you need to cover Zentrals with accuracy and confidence, official logos, bios, brand assets, and our founding story.
               </p>
               <Button
-                onClick={() => window.location.href = 'mailto:press@zentrais.com?subject=Press Kit Request'}
+                onClick={() => window.location.href = 'mailto:pr@zentrais.com?subject=Press Kit Request'}
                 className="w-full bg-pink-500 hover:bg-pink-600 text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
               >
                 Download Kit
@@ -201,7 +237,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
                 Stay informed with the latest announcements, and research shaping the Integrity Economy direct from the source.
               </p>
               <Button
-                onClick={() => window.location.href = 'mailto:press@zentrais.com?subject=Press Release Updates'}
+                onClick={() => window.location.href = 'mailto:pr@zentrais.com?subject=Press Release Updates'}
                 className="w-full bg-pink-500 hover:bg-pink-600 text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
               >
                 View Updates
@@ -220,7 +256,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
                 Explore ready-to-publish insights showing how the Debate Engine transforms digital conversation into meaningful exchange.
               </p>
               <Button
-                onClick={() => window.location.href = 'mailto:press@zentrais.com?subject=Story Briefs Request'}
+                onClick={() => window.location.href = 'mailto:pr@zentrais.com?subject=Story Briefs Request'}
                 className="w-full bg-pink-500 hover:bg-pink-600 text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
               >
                 Read Briefs

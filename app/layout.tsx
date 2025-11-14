@@ -5,7 +5,7 @@ import FloatingCTA from "../components/floating-cta";
 
 export const metadata = {
   title: "Zentrais",
-  description: "AI Debate Engine",
+  description: "More than a social network!",
   icons: {
     icon: "/icon.png",
   },

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import { ArrowRight } from 'lucide-react';
@@ -18,6 +18,18 @@ export default function CollaboratorPage() {
     collaborationTrack: '',
     optionalNotes: '',
   });
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+
+  // Generar partículas suaves
+  useEffect(() => {
+    const newParticles = Array.from({ length: 15 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      delay: Math.random() * 5,
+    }));
+    setParticles(newParticles);
+  }, []);
 
   const handleBecomeCollaborator = () => {
     window.location.href = 'mailto:collaborators@zentrais.com?subject=Become a Collaborator';
@@ -45,7 +57,31 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#151515' }}>
+      {/* Fondo animado sutil */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* Partículas suaves flotantes */}
+        {particles.map((particle) => (
+          <div
+            key={particle.id}
+            className="absolute w-1 h-1 bg-white rounded-full opacity-25 animate-float"
+            style={{
+              left: `${particle.x}%`,
+              top: `${particle.y}%`,
+              animationDelay: `${particle.delay}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+            }}
+          />
+        ))}
+        
+        {/* Líneas de flujo sutiles */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" />
+          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-400/30 to-transparent animate-flow" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent animate-flow" style={{ animationDelay: '4s' }} />
+        </div>
+      </div>
+
       {/* Collaboration is the New Competition Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24">
         <div className="max-w-7xl mx-auto">
