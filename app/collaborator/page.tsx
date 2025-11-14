@@ -35,6 +35,13 @@ export default function CollaboratorPage() {
     window.location.href = 'mailto:collaborators@zentrais.com?subject=Become a Collaborator';
   };
 
+  const handleStartCollaboration = () => {
+    const formElement = document.getElementById('collaborator-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const handleCollaborationFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = 'Start Your Collaboration Application';
@@ -96,7 +103,7 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
                 Partner with Zentrais to unlock measurable trust, co-create with innovators, and integrate integrity at scale transforming how your brand connects, performs, and leads.
               </p>
               <Button
-                onClick={handleBecomeCollaborator}
+                onClick={handleStartCollaboration}
                 className="bg-pink-500 hover:bg-pink-600 text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50"
               >
                 Start Collaboration
@@ -341,10 +348,10 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
       {/* Persistent CTA for mobile */}
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-slate-900/95 backdrop-blur-lg border-t border-amber-400/20 p-4">
         <Button
-          onClick={handleBecomeCollaborator}
+          onClick={handleStartCollaboration}
           className="w-full bg-pink-500 text-white hover:bg-pink-600"
         >
-          Join Zenzers
+          Start Collaboration
           <ArrowRight className="w-4 h-4 ml-2" />
         </Button>
       </div>

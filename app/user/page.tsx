@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import { MessageSquare, Gavel, ShoppingBag, ArrowRight, CheckCircle2, Circle, Lock, Shield, CheckCircle, DollarSign, ChevronDown, Play } from 'lucide-react';
@@ -10,7 +9,6 @@ import { useLanguage } from '../../contexts/language-context';
 
 export default function UserPage() {
   const { t } = useLanguage();
-  const router = useRouter();
 
   const carouselSlides = [
     {
@@ -95,8 +93,10 @@ export default function UserPage() {
   }, []);
 
   const handleJoinBeta = () => {
-    // Aquí iría la lógica para unirse a la beta
-    router.push('/debate/new');
+    const formElement = document.getElementById('waitlist-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   };
 
   return (
@@ -339,7 +339,7 @@ export default function UserPage() {
             {/* Left Section - Text Content */}
             <div className="text-left">
               {/* Step 1 Badge */}
-              <div className="inline-block bg-blue-900 rounded-lg px-4 py-2 mb-4">
+              <div className="inline-block bg-pink-500 rounded-lg px-4 py-2 mb-4">
                 <span className="text-white font-semibold text-sm">Step 1</span>
               </div>
               
@@ -355,15 +355,15 @@ export default function UserPage() {
               
               {/* Three buttons with arrows */}
               <div className="space-y-3">
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans flex items-center gap-3">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans flex items-center gap-3">
                   <ArrowRight className="w-4 h-4 flex-shrink-0" />
                   <span>Select input: Text, Voice, or Gesture</span>
                 </button>
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans flex items-center gap-3">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans flex items-center gap-3">
                   <ArrowRight className="w-4 h-4 flex-shrink-0" />
                   <span>Set the stage for authentic dialogue</span>
                 </button>
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans flex items-center gap-3">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans flex items-center gap-3">
                   <ArrowRight className="w-4 h-4 flex-shrink-0" />
                   <span>Embrace the feeling of openness</span>
                 </button>
@@ -371,7 +371,7 @@ export default function UserPage() {
               
               {/* Accent Circle */}
               <div className="mt-8 flex justify-end lg:justify-start">
-                <div className="w-16 h-16 rounded-full bg-blue-900 border-2 border-blue-700"></div>
+                <div className="w-16 h-16 rounded-full bg-pink-500 border-2 border-pink-400"></div>
               </div>
             </div>
 
@@ -469,7 +469,7 @@ export default function UserPage() {
             {/* Right Section - Text Content */}
             <div className="text-left order-1 lg:order-2">
               {/* Step 2 Badge */}
-              <div className="inline-block bg-blue-900 rounded-lg px-4 py-2 mb-4">
+              <div className="inline-block bg-pink-500 rounded-lg px-4 py-2 mb-4">
                 <span className="text-white font-semibold text-sm">Step 2</span>
               </div>
 
@@ -485,13 +485,13 @@ export default function UserPage() {
 
               {/* Interactive Prompt Buttons */}
               <div className="space-y-4">
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
                   What are you curious about right now?
                 </button>
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
                   What&apos;s one truth you hold dear
                 </button>
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
                   We&apos;d love to get to know you
                 </button>
               </div>
@@ -507,7 +507,7 @@ export default function UserPage() {
             {/* Left Section - Text Content */}
             <div className="text-left">
               {/* Step 3 Badge */}
-              <div className="inline-block bg-blue-900 rounded-lg px-4 py-2 mb-4">
+              <div className="inline-block bg-pink-500 rounded-lg px-4 py-2 mb-4">
                 <span className="text-white font-semibold text-sm">Step 3</span>
               </div>
 
@@ -523,13 +523,13 @@ export default function UserPage() {
 
               {/* Three buttons/bullet points */}
               <div className="space-y-4">
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
                   Tend to reflect deeply before reacting
                 </button>
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
                   The profile is private and not shared.
                 </button>
-                <button className="w-full bg-blue-900 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-blue-800 transition-colors font-sans">
+                <button className="w-full bg-pink-500 rounded-lg px-6 py-4 text-left text-white font-medium text-sm sm:text-base hover:bg-pink-600 transition-colors font-sans">
                   You value authentic dialogue
                 </button>
               </div>

@@ -158,6 +158,13 @@ export default function InvestorsPage() {
     window.location.href = 'mailto:investors@zentrais.com';
   };
 
+  const handleJoinHub = () => {
+    const formElement = document.getElementById('investor-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="min-h-screen text-white relative overflow-hidden" style={{ backgroundColor: '#36454F' }}>
       {/* Fondo animado sutil */}
@@ -297,7 +304,7 @@ export default function InvestorsPage() {
           {/* Join Hub Button */}
           <div className="text-center">
             <Button
-              onClick={handleInvestorRelations}
+              onClick={handleJoinHub}
               className="bg-pink-500 hover:bg-pink-600 text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50"
             >
               Join Hub
@@ -498,7 +505,7 @@ export default function InvestorsPage() {
           {/* Join Hub Button - Centered */}
           <div className="text-center">
             <Button
-              onClick={handleInvestorRelations}
+              onClick={handleJoinHub}
               className="bg-pink-500 hover:bg-pink-600 text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50"
             >
               Join Hub

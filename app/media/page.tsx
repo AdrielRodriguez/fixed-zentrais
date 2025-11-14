@@ -36,6 +36,13 @@ export default function MediaPage() {
     window.location.href = 'mailto:collaborators@zentrais.com?subject=Become a Collaborator';
   };
 
+  const handleJoinZenzers = () => {
+    const formElement = document.getElementById('media-form');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const subject = 'Join the Zenzers Circle Application';
@@ -99,7 +106,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
                 Join a global network of creators and journalists reshaping how stories are told, powered by Zentrais&apos; Debate Engine for respectful, truth-driven dialogue.
               </p>
               <Button
-                onClick={handleBecomeCollaborator}
+                onClick={handleJoinZenzers}
                 className="bg-pink-500 hover:bg-pink-600 text-white text-lg px-8 py-6 rounded-xl font-bold transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/50"
               >
                 Join Zenzers
@@ -394,7 +401,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       {/* Persistent CTA for mobile */}
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-slate-900/95 backdrop-blur-lg border-t border-amber-400/20 p-4">
         <Button
-          onClick={handleBecomeCollaborator}
+          onClick={handleJoinZenzers}
           className="w-full bg-pink-500 text-white hover:bg-pink-600"
         >
           Join Zenzers
