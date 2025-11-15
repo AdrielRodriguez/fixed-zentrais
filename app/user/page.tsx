@@ -59,7 +59,8 @@ export default function UserPage() {
   const [currentParticipants, setCurrentParticipants] = useState(342);
   const [selectedPhone, setSelectedPhone] = useState(1);
   const [waitlistName, setWaitlistName] = useState('');
-  const [waitlistEmail, setWaitlistEmail] = useState(''); // 0: left, 1: middle, 2: right
+  const [waitlistEmail, setWaitlistEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   // Generar partículas de luz
   useEffect(() => {
@@ -75,7 +76,7 @@ export default function UserPage() {
   // Auto-rotar carrusel
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+      setCurrentSlide((prev) => (prev + 1) % 3);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -672,12 +673,36 @@ export default function UserPage() {
             </p>
             
             <form 
-              onSubmit={(e) => {
+              action="https://api.web3forms.com/submit"
+              method="POST"
+              onSubmit={async (e) => {
                 e.preventDefault();
-                handleJoinBeta();
+                const formData = new FormData(e.currentTarget);
+                try {
+                  const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                  });
+                  
+                  if (response.ok) {
+                    setIsSubmitted(true);
+                    setWaitlistName('');
+                    setWaitlistEmail('');
+                    
+                    // Después de 2 segundos, volver al estado normal
+                    setTimeout(() => {
+                      setIsSubmitted(false);
+                    }, 2000);
+                  }
+                } catch (error) {
+                  console.error('Error al enviar el formulario:', error);
+                }
               }}
               className="space-y-6"
             >
+              <input type="hidden" name="access_key" value="90c589f1-3e39-401f-a2ff-3aa0d2b96c05" />
+              <input type="hidden" name="to" value="rodriguezadri500@gmail.com" />
+              
               <div>
                 <label htmlFor="waitlist-name" className="block text-white font-medium mb-2 text-sm sm:text-base font-sans">
                   {t('user.waitlist.name')}
@@ -685,6 +710,7 @@ export default function UserPage() {
                 <input
                   id="waitlist-name"
                   type="text"
+                  name="name"
                   value={waitlistName}
                   onChange={(e) => setWaitlistName(e.target.value)}
                   placeholder={t('user.waitlist.name.placeholder')}
@@ -700,6 +726,7 @@ export default function UserPage() {
                 <input
                   id="waitlist-email"
                   type="email"
+                  name="email"
                   value={waitlistEmail}
                   onChange={(e) => setWaitlistEmail(e.target.value)}
                   placeholder={t('user.waitlist.email.placeholder')}
@@ -710,9 +737,35 @@ export default function UserPage() {
               
               <button
                 type="submit"
-                className="tone-button w-full text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:scale-105 text-lg sm:text-xl font-sans"
+                disabled={isSubmitted}
+                className={`tone-button w-full text-white font-bold py-4 px-6 rounded-lg transition-all duration-500 text-lg sm:text-xl font-sans relative overflow-hidden ${
+                  isSubmitted 
+                    ? 'scale-75' 
+                    : 'hover:scale-105'
+                }`}
               >
-                {t('user.waitlist.submit')}
+                <span className={`flex items-center justify-center gap-2 transition-all duration-500 ${
+                  isSubmitted ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
+                }`}>
+                  {t('user.waitlist.submit')}
+                </span>
+                <span className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+                  isSubmitted ? 'opacity-100 scale-100' : 'opacity-0 scale-0'
+                }`}>
+                  <svg 
+                    className="w-6 h-6 text-green-400" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={3} 
+                      d="M5 13l4 4L19 7" 
+                    />
+                  </svg>
+                </span>
               </button>
             </form>
           </div>
