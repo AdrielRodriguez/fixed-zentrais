@@ -76,6 +76,12 @@ export default function Footer() {
               >
                 Contact
               </Link>
+              <Link 
+                href="/career" 
+                className="text-slate-400 hover:text-white transition-colors duration-300 font-sans text-sm"
+              >
+                Career
+              </Link>
             </div>
           </div>
 
