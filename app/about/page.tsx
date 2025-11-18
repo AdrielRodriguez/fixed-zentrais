@@ -66,52 +66,52 @@ export default function AboutPage() {
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white font-sans mx-auto">
-              About Us
+              {t('about.title')}
             </h1>
           </div>
 
           {/* Content */}
           <div className="space-y-6 text-white font-sans text-base sm:text-lg leading-relaxed">
             <p>
-              Zentrais is building the world's first <strong>Integrity Economy</strong>, a Human-AI ecosystem designed to restore trust, intelligence, and accountability to the internet.
+              {t('about.content.p1')} <strong>{t('about.content.integrity')}</strong>{t('about.content.p2')}
             </p>
             
             <p>
-              Today's platforms profit from manipulation, noise, and anonymity. We reject that model entirely. Zentrais puts <strong>truth, trust, and transparency</strong> first.
+              {t('about.content.p3')} <strong>{t('about.content.truth')}</strong> {t('about.content.p4')}
             </p>
             
             <p>
-              Our three engines create a new standard for digital interaction:
+              {t('about.content.p5')}
             </p>
             
             <ul className="list-disc list-inside space-y-2 ml-4">
-              <li><strong>Perspective</strong> — Verified insights without algorithmic distortion.</li>
-              <li><strong>Dialog</strong> — Accountable conversations rooted in identity and respect.</li>
-              <li><strong>Exchange</strong> — Real value created and traded through integrity, not attention.</li>
+              <li><strong>{t('about.content.engine1')}</strong> {t('about.content.engine1.desc')}</li>
+              <li><strong>{t('about.content.engine2')}</strong> {t('about.content.engine2.desc')}</li>
+              <li><strong>{t('about.content.engine3')}</strong> {t('about.content.engine3.desc')}</li>
             </ul>
             
             <p>
-              This is not social media 2.0.
+              {t('about.content.p6')}
             </p>
             
             <p>
-              It's a new operating system for collective intelligence, powered by patented models, transparent architecture, and a roadmap built for global scale.
+              {t('about.content.p7')}
             </p>
             
             <p>
-              Our 60+ global builders, engineers, creators, and researchers share one mission: Use AI to strengthen humanity, not weaken it.
+              {t('about.content.p8')}
             </p>
             
             <p>
-              Zentrais proves that when people and machines collaborate with integrity, better ideas rise, decisions improve, and societies advance.
+              {t('about.content.p9')}
             </p>
             
             <p>
-              We're not asking the world to trust AI. We're building AI the world can trust.
+              {t('about.content.p10')}
             </p>
             
             <p className="font-bold text-xl mt-8">
-              <strong>Zentrais. The Integrity Economy Starts Here.</strong>
+              <strong>{t('about.content.footer')}</strong>
             </p>
           </div>
         </div>

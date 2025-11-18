@@ -7,9 +7,6 @@ import { Languages, ChevronDown } from 'lucide-react';
 const languages = [
   { code: 'en' as const, name: 'English', flag: '🇺🇸' },
   { code: 'es' as const, name: 'Español', flag: '🇪🇸' },
-  { code: 'fr' as const, name: 'Français', flag: '🇫🇷' },
-  { code: 'de' as const, name: 'Deutsch', flag: '🇩🇪' },
-  { code: 'pt' as const, name: 'Português', flag: '🇵🇹' },
 ];
 
 export default function LanguageSelector() {

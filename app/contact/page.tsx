@@ -66,10 +66,10 @@ export default function ContactPage() {
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white font-sans mx-auto">
-              Contact Us
+              {t('contact.title')}
             </h1>
             <p className="text-base sm:text-lg text-gray-400 font-sans">
-              Choose who you want to reach inside Zentrais.
+              {t('contact.subtitle')}
             </p>
           </div>
 
@@ -77,61 +77,61 @@ export default function ContactPage() {
           <div className="space-y-8 text-white font-sans">
             <div className="space-y-2">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                Users
+                {t('contact.users.title')}
               </h2>
               <p className="text-base sm:text-lg text-gray-300">
-                Support, access, or platform questions
+                {t('contact.users.desc')}
               </p>
               <p className="text-base sm:text-lg font-bold text-white">
-                support@zentrais.com
+                {t('contact.users.email')}
               </p>
             </div>
 
             <div className="space-y-2">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                Investors
+                {t('contact.investors.title')}
               </h2>
               <p className="text-base sm:text-lg text-gray-300">
-                Funding, Data Room, or strategic conversations
+                {t('contact.investors.desc')}
               </p>
               <p className="text-base sm:text-lg font-bold text-white">
-                investors@zentrais.com
+                {t('contact.investors.email')}
               </p>
             </div>
 
             <div className="space-y-2">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                Collaborators
+                {t('contact.collaborators.title')}
               </h2>
               <p className="text-base sm:text-lg text-gray-300">
-                Partnerships, integrations, or co-development
+                {t('contact.collaborators.desc')}
               </p>
               <p className="text-base sm:text-lg font-bold text-white">
-                collaborate@zentrais.com
+                {t('contact.collaborators.email')}
               </p>
             </div>
 
             <div className="space-y-2">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                Media
+                {t('contact.media.title')}
               </h2>
               <p className="text-base sm:text-lg text-gray-300">
-                Press, interviews, or speaking requests
+                {t('contact.media.desc')}
               </p>
               <p className="text-base sm:text-lg font-bold text-white">
-                media@zentrais.com
+                {t('contact.media.email')}
               </p>
             </div>
 
             <div className="space-y-2">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                Everything Else
+                {t('contact.other.title')}
               </h2>
               <p className="text-base sm:text-lg text-gray-300">
-                We'll route it to the right team
+                {t('contact.other.desc')}
               </p>
               <p className="text-base sm:text-lg font-bold text-white">
-                contact@zentrais.com
+                {t('contact.other.email')}
               </p>
             </div>
           </div>

@@ -6,7 +6,7 @@ import { useLanguage } from '../../contexts/language-context';
 
 export default function CareerPage() {
   const { t } = useLanguage();
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number }>>([]);
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; delay: number; duration: number }>>([]);
 
   // Generar partículas suaves
   useEffect(() => {
@@ -15,6 +15,7 @@ export default function CareerPage() {
       x: Math.random() * 100,
       y: Math.random() * 100,
       delay: Math.random() * 5,
+      duration: 8 + Math.random() * 4,
     }));
     setParticles(newParticles);
   }, []);
@@ -47,7 +48,7 @@ export default function CareerPage() {
               left: `${particle.x}%`,
               top: `${particle.y}%`,
               animationDelay: `${particle.delay}s`,
-              animationDuration: `${8 + Math.random() * 4}s`,
+              animationDuration: `${particle.duration}s`,
             }}
           />
         ))}
@@ -66,7 +67,7 @@ export default function CareerPage() {
           {/* Header */}
           <div className="mb-12 text-center">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-white font-sans mx-auto">
-              Careers
+              {t('career.title')}
             </h1>
           </div>
 
@@ -74,89 +75,89 @@ export default function CareerPage() {
           <div className="space-y-8 text-white font-sans text-base sm:text-lg leading-relaxed">
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-sans">
-                Help build the world's first Integrity Economy.
+                {t('career.hero.title')}
               </h2>
               <p>
-                Zentrais is a mission-driven company rebuilding how the internet works. We're forming a global team of high-ownership, high-accountability builders who want their work to matter. If you operate like a founder, think critically, and thrive without hand-holding, you'll fit here.
+                {t('career.hero.desc')}
               </p>
             </div>
 
             {/* Why Zentrais Section */}
             <div className="mt-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-sans">
-                Why Zentrais
+                {t('career.why.title')}
               </h2>
               <p className="mb-4">
-                Today's platforms profit from noise and manipulation. We're creating the opposite: a Human + AI ecosystem rooted in truth, trust, and transparency—powered by three engines:
+                {t('career.why.desc')}
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li><strong>Perspective</strong> — Verified insights without distortion</li>
-                <li><strong>Dialog</strong> — Accountable conversations supported by identity</li>
-                <li><strong>Exchange</strong> — Real value earned through integrity, not attention</li>
+                <li><strong>{t('career.why.engine1')}</strong> {t('career.why.engine1.desc')}</li>
+                <li><strong>{t('career.why.engine2')}</strong> {t('career.why.engine2.desc')}</li>
+                <li><strong>{t('career.why.engine3')}</strong> {t('career.why.engine3.desc')}</li>
               </ul>
               <p className="mt-4">
-                Every role contributes to this architecture.
+                {t('career.why.footer')}
               </p>
             </div>
 
             {/* Who Thrives Here Section */}
             <div className="mt-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-sans">
-                Who Thrives Here
+                {t('career.thrives.title')}
               </h2>
-              <p className="mb-4">People who:</p>
+              <p className="mb-4">{t('career.thrives.desc')}</p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>Deliver outcomes, not activity</li>
-                <li>Think clearly and challenge assumptions</li>
-                <li>Move fast with respect and ownership</li>
-                <li>Collaborate across disciplines</li>
-                <li>Care about building systems that strengthen humanity</li>
+                <li>{t('career.thrives.item1')}</li>
+                <li>{t('career.thrives.item2')}</li>
+                <li>{t('career.thrives.item3')}</li>
+                <li>{t('career.thrives.item4')}</li>
+                <li>{t('career.thrives.item5')}</li>
               </ul>
               <p className="mt-4">
-                If you need rigid processes or daily supervision, this won't be the right fit.
+                {t('career.thrives.footer')}
               </p>
             </div>
 
             {/* Roles We're Strengthening Section */}
             <div className="mt-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-sans">
-                Roles We're Strengthening
+                {t('career.roles.title')}
               </h2>
               <p className="mb-4">
-                We hire for ability and mindset, not titles. Priority areas include:
+                {t('career.roles.desc')}
               </p>
               <ul className="list-disc list-inside space-y-2 ml-4">
-                <li>AI / Machine Learning</li>
-                <li>Backend & Infrastructure</li>
-                <li>Frontend / UI & UX</li>
-                <li>Security, Identity, and Compliance</li>
-                <li>Content, Narrative, and Communications</li>
-                <li>Partnerships, Growth, and Operations</li>
+                <li>{t('career.roles.item1')}</li>
+                <li>{t('career.roles.item2')}</li>
+                <li>{t('career.roles.item3')}</li>
+                <li>{t('career.roles.item4')}</li>
+                <li>{t('career.roles.item5')}</li>
+                <li>{t('career.roles.item6')}</li>
               </ul>
               <p className="mt-4">
-                If you know you can elevate the Integrity Economy, we want to hear from you.
+                {t('career.roles.footer')}
               </p>
             </div>
 
             {/* How to Apply Section */}
             <div className="mt-10">
               <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-sans">
-                How to Apply
+                {t('career.apply.title')}
               </h2>
-              <p className="mb-4">Send us:</p>
+              <p className="mb-4">{t('career.apply.desc')}</p>
               <ul className="list-disc list-inside space-y-2 ml-4 mb-4">
-                <li>Your portfolio or relevant work</li>
-                <li>One problem you solved that shows how you think</li>
-                <li>What you want to build inside Zentrais</li>
+                <li>{t('career.apply.item1')}</li>
+                <li>{t('career.apply.item2')}</li>
+                <li>{t('career.apply.item3')}</li>
               </ul>
               <p className="mb-2">
-                <strong>Email:</strong> <a href="mailto:careers@zentrais.com" className="text-indigo-400 hover:text-indigo-300 underline">careers@zentrais.com</a>
+                <strong>{t('career.apply.email')}</strong> <a href="mailto:careers@zentrais.com" className="text-indigo-400 hover:text-indigo-300 underline">{t('career.apply.email.address')}</a>
               </p>
               <p className="mb-6">
-                <strong>Subject:</strong> "Building With Integrity"
+                <strong>{t('career.apply.subject')}</strong> {t('career.apply.subject.text')}
               </p>
               <p className="font-bold text-xl mt-8">
-                Join the first 60 pioneers shaping a new standard for digital life.
+                {t('career.apply.footer')}
               </p>
             </div>
           </div>

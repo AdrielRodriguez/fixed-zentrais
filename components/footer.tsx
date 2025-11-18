@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Twitter, Github, Linkedin } from 'lucide-react';
+import { Linkedin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -30,24 +30,6 @@ export default function Footer() {
               </p>
             </div>
             <div className="flex items-center gap-4">
-              <a 
-                href="https://twitter.com/zentrais" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-white transition-colors duration-300"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://github.com/zentrais" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-slate-400 hover:text-white transition-colors duration-300"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
               <a 
                 href="https://www.linkedin.com/company/zentrais-llc/posts/?feedView=all" 
                 target="_blank" 
