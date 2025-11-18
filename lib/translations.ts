@@ -1066,7 +1066,6 @@ export const translations: Record<Language, Record<string, string>> = {
     'legal.privacy.final.desc': 'Nuestra política de privacidad honra ese compromiso. Tú eres dueño de tus datos. Tú controlas tu identidad. Protegemos lo que compartes y lo que no compartes.',
     
     // About Page (Spanish)
-    'about.title': 'Acerca de',
     'about.subtitle': 'Zentrais | Redefiniendo la Interacción Global',
     'about.intro': 'Zentrais es una plataforma social revolucionaria impulsada por IA que une comunicación, comercio y colaboración en un ecosistema fluido.',
     'about.chat.title': 'Modo Perspectiva',

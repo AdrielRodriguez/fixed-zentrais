@@ -93,7 +93,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
       </div>
 
       {/* Let's Break the Mold Section */}
-      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-32 sm:pt-36 md:pt-40 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Section - Text Content */}
@@ -123,7 +123,7 @@ Publication History / Focus Area: ${formData.publicationHistory}
                     alt="People collaborating"
                     width={800}
                     height={600}
-                    className="w-full h-auto object-cover"
+                    className="w-full h-auto object-cover max-h-[500px] sm:max-h-[600px]"
                     priority
                   />
                 </div>
@@ -216,8 +216,8 @@ Publication History / Focus Area: ${formData.publicationHistory}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             {/* Press Kit Card */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading">Press Kit</h3>
-              <div className="flex justify-center mb-6">
+              <div className="flex flex-col items-center mb-6">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center">Press Kit</h3>
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <Folder className="w-12 h-12 sm:w-14 sm:h-14 text-amber-800" />
                 </div>
@@ -235,8 +235,8 @@ Publication History / Focus Area: ${formData.publicationHistory}
 
             {/* Press Release Card */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading">Press Release</h3>
-              <div className="flex justify-center mb-6">
+              <div className="flex flex-col items-center mb-6">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center">Press Release</h3>
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <Megaphone className="w-12 h-12 sm:w-14 sm:h-14 text-red-600" />
                 </div>
@@ -254,8 +254,8 @@ Publication History / Focus Area: ${formData.publicationHistory}
 
             {/* Story Briefs Card */}
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading">Story Briefs</h3>
-              <div className="flex justify-center mb-6">
+              <div className="flex flex-col items-center mb-6">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center">Story Briefs</h3>
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <BookOpen className="w-12 h-12 sm:w-14 sm:h-14 text-amber-900" />
                 </div>
