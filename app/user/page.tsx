@@ -129,8 +129,8 @@ export default function UserPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Texto a la izquierda */}
-            <div className="text-left">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
+            <div className="text-left h-[400px] sm:h-[450px] md:h-[500px] lg:h-[550px] xl:h-[600px] 2xl:h-[650px] flex flex-col justify-center">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white leading-tight font-sans tracking-tight">
                 {t('user.hero.connect.title')}{' '}
                 <span className="block">{t('user.hero.connect.subtitle')}</span>{' '}
                 <span className="tone-highlight">{t('user.hero.connect.understand')}</span>
@@ -168,11 +168,7 @@ export default function UserPage() {
                     : selectedPhone === 1
                     ? 'calc(50% - 8rem)'
                     : 'calc(50% - 16rem)',
-                  transform: selectedPhone === 0
-                    ? 'translateX(-50%) scale(1.1)'
-                    : selectedPhone === 1
-                    ? 'translateX(-50%) scale(0.9)'
-                    : 'translateX(-50%) scale(0.8)',
+                  transform: 'translateX(-50%) scale(1)',
                 }}
               >
                 <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
@@ -201,13 +197,7 @@ export default function UserPage() {
                     : selectedPhone === 0
                     ? 'calc(50% + 8rem)'
                     : 'calc(50% - 8rem)',
-                  transform: selectedPhone === 1
-                    ? 'translateX(-50%) scale(1.1)'
-                    : selectedPhone === 0
-                    ? 'translateX(-50%) scale(0.9)'
-                    : selectedPhone === 2
-                    ? 'translateX(-50%) scale(0.9)'
-                    : 'translateX(-50%) scale(0.8)',
+                  transform: 'translateX(-50%) scale(1)',
                 }}
               >
                 <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">
@@ -236,11 +226,7 @@ export default function UserPage() {
                     : selectedPhone === 1
                     ? 'calc(50% + 8rem)'
                     : 'calc(50% + 16rem)',
-                  transform: selectedPhone === 2
-                    ? 'translateX(-50%) scale(1.1)'
-                    : selectedPhone === 1
-                    ? 'translateX(-50%) scale(0.9)'
-                    : 'translateX(-50%) scale(0.8)',
+                  transform: 'translateX(-50%) scale(1)',
                 }}
               >
                 <div className="relative w-56 sm:w-80 md:w-88 h-[28rem] sm:h-[40rem] md:h-[44rem] transition-all duration-300">

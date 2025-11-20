@@ -213,59 +213,59 @@ Publication History / Focus Area: ${formData.publicationHistory}
       {/* Resources Cards Section */}
       <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {/* Press Kit Card */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <div className="flex flex-col items-center mb-6">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center">Press Kit</h3>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col h-full">
+              <div className="flex flex-col items-center mb-6 flex-shrink-0">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center min-h-[3.5rem] sm:min-h-[4rem] flex items-center justify-center">Press Kit</h3>
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <Folder className="w-12 h-12 sm:w-14 sm:h-14 text-amber-800" />
                 </div>
               </div>
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 ">
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 flex-grow min-h-0">
                 Everything you need to cover Zentrals with accuracy and confidence, official logos, bios, brand assets, and our founding story.
               </p>
               <Button
                 onClick={() => window.location.href = 'mailto:pr@zentrais.com?subject=Press Kit Request'}
-                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex-shrink-0 mt-auto"
               >
                 Download Kit
               </Button>
             </div>
 
             {/* Press Release Card */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <div className="flex flex-col items-center mb-6">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center">Press Release</h3>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col h-full">
+              <div className="flex flex-col items-center mb-6 flex-shrink-0">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center min-h-[3.5rem] sm:min-h-[4rem] flex items-center justify-center">Press Release</h3>
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <Megaphone className="w-12 h-12 sm:w-14 sm:h-14 text-red-600" />
                 </div>
               </div>
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 ">
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 flex-grow min-h-0">
                 Stay informed with the latest announcements, and research shaping the Integrity Economy direct from the source.
               </p>
               <Button
                 onClick={() => window.location.href = 'mailto:pr@zentrais.com?subject=Press Release Updates'}
-                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex-shrink-0 mt-auto"
               >
                 View Updates
               </Button>
             </div>
 
             {/* Story Briefs Card */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <div className="flex flex-col items-center mb-6">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center">Story Briefs</h3>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col h-full">
+              <div className="flex flex-col items-center mb-6 flex-shrink-0">
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-6 collaborator-heading text-center min-h-[3.5rem] sm:min-h-[4rem] flex items-center justify-center">Story Briefs</h3>
                 <div className="w-24 h-24 sm:w-28 sm:h-28 bg-amber-50/90 rounded-xl flex items-center justify-center">
                   <BookOpen className="w-12 h-12 sm:w-14 sm:h-14 text-amber-900" />
                 </div>
               </div>
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 ">
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 flex-grow min-h-0">
                 Explore ready-to-publish insights showing how the Perspective Engine transforms digital conversation into meaningful exchange.
               </p>
               <Button
                 onClick={() => window.location.href = 'mailto:pr@zentrais.com?subject=Story Briefs Request'}
-                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex-shrink-0 mt-auto"
               >
                 Read Briefs
               </Button>

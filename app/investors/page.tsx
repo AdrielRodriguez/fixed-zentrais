@@ -229,7 +229,7 @@ export default function InvestorsPage() {
         <div className="max-w-5xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-white leading-tight collaborator-heading uppercase tracking-tight">
             {t('investors.integrity.title')}{' '}
-            <span className="tone-highlight collaborator-heading">{t('investors.integrity.not')}</span>
+            <span className="tone-highlight collaborator-heading">{t('investors.integrity.not')}.</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto collaborator-body">
             {t('investors.integrity.desc')}
@@ -261,7 +261,8 @@ export default function InvestorsPage() {
               <span className="tone-highlight collaborator-heading">{t('investors.find.type.subtitle')}</span>
             </h2>
             <p className="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl mx-auto collaborator-body">
-              {t('investors.find.type.desc')}
+              Discover how your investment philosophy<br />
+              aligns with the Integrity Economy.
             </p>
           </div>
 

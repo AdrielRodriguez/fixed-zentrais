@@ -188,44 +188,44 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {/* Research Alliances Card */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading text-center">Research Alliances</h3>
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col h-full">
+              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading text-center flex-shrink-0 h-[3.5rem] sm:h-[4rem] flex items-center justify-center leading-tight">Research Alliances</h3>
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 flex-grow min-h-0">
                 Partner with our research team to co-create reports, uncover emerging ethical business trends, and access data-backed insights for strategic planning.
               </p>
               <Button
                 onClick={() => window.location.href = 'mailto:collaborators@zentrais.com?subject=Research Alliances Request'}
-                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex-shrink-0 mt-auto"
               >
                 Download Kit
               </Button>
             </div>
 
             {/* Exchange Integration Card */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading text-center">{t('collaborator.ways.marketplace.title')}</h3>
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col h-full">
+              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading text-center flex-shrink-0 h-[3.5rem] sm:h-[4rem] flex items-center justify-center leading-tight">{t('collaborator.ways.marketplace.title')}</h3>
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 flex-grow min-h-0">
                 Integrate Zentrals&apos; verified trust tools into your products, enhancing credibility with consumers through certifications, supply chain tracking, and integrity badges.
               </p>
               <Button
                 onClick={() => window.location.href = 'mailto:collaborators@zentrais.com?subject=Exchange Integration Request'}
-                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex-shrink-0 mt-auto"
               >
                 View Updates
               </Button>
             </div>
 
             {/* Co-Brand Campaigns Card */}
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading text-center">Co-Brand Campaigns</h3>
-              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex flex-col h-full">
+              <h3 className="text-2xl sm:text-3xl text-white mb-4 collaborator-heading text-center flex-shrink-0 h-[3.5rem] sm:h-[4rem] flex items-center justify-center leading-tight">Co-Brand Campaigns</h3>
+              <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6 flex-grow min-h-0">
                 Launch campaigns highlighting ethical leadership and measurable outcomes. Co-create content, while tracking engagement and audience growth.
               </p>
               <Button
                 onClick={() => window.location.href = 'mailto:collaborators@zentrais.com?subject=Co-Brand Campaigns Request'}
-                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                className="tone-button w-full text-white text-base sm:text-lg px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105 flex-shrink-0 mt-auto"
               >
                 Read Briefs
               </Button>
