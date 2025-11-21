@@ -96,8 +96,7 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
             {/* Left Section - Text Content */}
             <div className="text-left flex flex-col justify-center">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-6 text-white leading-tight collaborator-heading">
-                {t('collaborator.competition.title')}{' '}
-                <span className="tone-highlight">{t('collaborator.competition.new')}</span>
+                {t('collaborator.competition.title')}
               </h1>
               <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
                 {t('collaborator.competition.desc')}
@@ -171,6 +170,128 @@ Optional Notes: ${collaborationFormData.optionalNotes || 'Not provided'}
                   </span>
                 </li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOR PARTNERS Section */}
+      <section className="relative z-10 container mx-auto px-4 sm:px-6 pt-20 sm:pt-24 md:pt-28 pb-12 sm:pb-16 md:pb-24">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-4 text-white leading-tight collaborator-heading font-bold">
+              {t('collaborator.partners.title')}
+            </h2>
+            <div className="w-24 h-1 mx-auto bg-gradient-to-r from-transparent via-pink-500/60 to-transparent"></div>
+          </div>
+
+          {/* Two Column Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
+            {/* Left Column - Who we partner with */}
+            <div className="group relative bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md rounded-3xl border-2 border-white/20 p-8 sm:p-10 shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(236,72,153,0.3)] transition-all duration-500 hover:border-pink-400/40 hover:scale-[1.02]">
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-pink-500/20 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-1 h-12 bg-gradient-to-b from-pink-400 to-indigo-400 rounded-full"></div>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold collaborator-heading">
+                    {t('collaborator.partners.who.title')}
+                  </h3>
+                </div>
+                <ul className="space-y-5">
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-pink-400 to-indigo-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-pink-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      <strong className="text-white font-semibold">{t('collaborator.partners.who.item1')}</strong>
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-pink-400 to-indigo-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-pink-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      <strong className="text-white font-semibold">{t('collaborator.partners.who.item2')}</strong>
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-pink-400 to-indigo-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-pink-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      <strong className="text-white font-semibold">{t('collaborator.partners.who.item3')}</strong>
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-pink-400 to-indigo-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-pink-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      <strong className="text-white font-semibold">{t('collaborator.partners.who.item4')}</strong>
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-pink-400 to-indigo-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-pink-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      <strong className="text-white font-semibold">{t('collaborator.partners.who.item5')}</strong>
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-pink-400 to-indigo-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-pink-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      <strong className="text-white font-semibold">{t('collaborator.partners.who.item6')}</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Right Column - What you get */}
+            <div className="group relative bg-gradient-to-br from-white/8 to-white/3 backdrop-blur-md rounded-3xl border-2 border-white/20 p-8 sm:p-10 shadow-2xl hover:shadow-[0_20px_60px_-15px_rgba(139,92,246,0.3)] transition-all duration-500 hover:border-indigo-400/40 hover:scale-[1.02]">
+              {/* Decorative corner accent */}
+              <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-indigo-500/20 to-transparent rounded-br-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-1 h-12 bg-gradient-to-b from-indigo-400 to-pink-400 rounded-full"></div>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl text-white font-bold collaborator-heading">
+                    {t('collaborator.partners.what.title')}
+                  </h3>
+                </div>
+                <ul className="space-y-5">
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-indigo-400 to-pink-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-indigo-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      {t('collaborator.partners.what.item1')}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-indigo-400 to-pink-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-indigo-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      {t('collaborator.partners.what.item2')}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-indigo-400 to-pink-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-indigo-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      {t('collaborator.partners.what.item3')}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-indigo-400 to-pink-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-indigo-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      {t('collaborator.partners.what.item4')}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-indigo-400 to-pink-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-indigo-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      {t('collaborator.partners.what.item5')}
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-4 group/item">
+                    <div className="mt-1.5 w-3 h-3 bg-gradient-to-br from-indigo-400 to-pink-400 rounded-sm rotate-45 flex-shrink-0 shadow-lg shadow-indigo-500/30 group-hover/item:scale-110 transition-transform duration-300"></div>
+                    <span className="text-gray-100 text-base sm:text-lg leading-relaxed pt-0.5">
+                      {t('collaborator.partners.what.item6')}
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
