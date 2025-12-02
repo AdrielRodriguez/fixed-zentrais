@@ -38,7 +38,7 @@ export default function LanguageSelector() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-white hover:opacity-80 transition-all duration-300"
+        className="flex items-center gap-2 text-white hover:opacity-80 transition-all duration-300 cursor-pointer"
         aria-label="Select language"
         aria-expanded={isOpen}
       >
@@ -53,7 +53,7 @@ export default function LanguageSelector() {
             <button
               key={lang.code}
               onClick={() => handleLanguageChange(lang.code)}
-              className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-white/10 transition-colors duration-200 ${
+              className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-white/10 transition-colors duration-200 cursor-pointer ${
                 language === lang.code ? 'bg-white/10' : ''
               }`}
             >
