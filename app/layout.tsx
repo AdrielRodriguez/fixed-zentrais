@@ -41,6 +41,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QW0W2XQB7Y"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-QW0W2XQB7Y');
+            `,
+          }}
+        />
+      </head>
       <body className={`min-h-screen flex flex-col ${spaceGrotesk.variable} ${playfairDisplay.variable} ${inter.variable}`} style={{ backgroundColor: 'transparent' }}>
         <LanguageProviderWrapper>
           {/* NAVBAR */}
