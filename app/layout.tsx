@@ -30,7 +30,9 @@ export const metadata = {
   title: "Zentrais",
   description: "More than a social network!",
   icons: {
-    icon: "/icon.png",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
 };
 
