@@ -18,6 +18,12 @@ export const translations: Record<Language, Record<string, string>> = {
     'home.card.media.title': 'SPREAD THE BUZZ',
     'home.card.media.desc': 'Share real stories of real change. A space for Zenzers and true media.',
     
+    // Page Titles
+    'pagetitle.user': 'User',
+    'pagetitle.investors': 'Investors',
+    'pagetitle.collaborator': 'Collaborator',
+    'pagetitle.media': 'Media',
+    
     // User Page
     'user.hero.title': 'Shape how AI learns to respect humans',
     'user.hero.subtitle': 'Join the ecosystem that transforms integrity into real value. Every authentic interaction grants you',
@@ -891,6 +897,12 @@ export const translations: Record<Language, Record<string, string>> = {
     'home.card.collaborator.desc': 'Trabaja con nosotros para construir algo significativo, escalable y globalmente relevante.',
     'home.card.media.title': 'DIFUNDE LA NOTICIA',
     'home.card.media.desc': 'Comparte historias reales de cambio real. Un espacio para Zenzers y medios verdaderos.',
+    
+    // Page Titles
+    'pagetitle.user': 'Usuario',
+    'pagetitle.investors': 'Inversores',
+    'pagetitle.collaborator': 'Colaborador',
+    'pagetitle.media': 'Medios',
     
     // User Page
     'user.hero.title': 'Moldea cómo la IA aprende a respetar a los humanos',

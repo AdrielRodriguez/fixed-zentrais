@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Image
-                src="/logo-pink.png"
+                src="/Zentrais Flaticon 150x150-03.png"
                 alt="Zentrais Logo"
                 width={60}
                 height={60}

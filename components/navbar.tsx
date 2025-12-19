@@ -35,21 +35,23 @@ export default function Navbar() {
             <div className="flex-1"></div>
             <Link 
               href="/" 
-              className="group flex items-center -space-x-4 cursor-pointer hover:opacity-80 transition-all duration-300"
+              className="group flex items-center cursor-pointer hover:opacity-80 transition-all duration-300"
+              style={{ gap: '0.5px', alignItems: 'center' }}
             >
               <Image
-                src="/logo-pink.png"
+                src="/Zentrais Flaticon 150x150-03.png"
                 alt="Zentrais Logo"
-                width={56}
-                height={56}
-                className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 transition-transform duration-300 group-hover:scale-110"
+                width={36}
+                height={36}
+                className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:w-11 lg:h-11 transition-transform duration-300 group-hover:scale-110 self-center"
               />
               <Image
                 src="/logo-1.png"
                 alt="Zentrais"
                 width={130}
                 height={130}
-                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-transform duration-300 group-hover:scale-110 object-contain"
+                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-transform duration-300 group-hover:scale-110 object-contain self-center"
+                style={{ marginTop: '4px' }}
               />
             </Link>
             <div className="flex-1 flex justify-end items-center gap-4">
@@ -60,21 +62,23 @@ export default function Navbar() {
           <>
             <Link 
               href="/" 
-              className="group flex items-center -space-x-4 cursor-pointer hover:opacity-80 transition-all duration-300"
+              className="group flex items-center cursor-pointer hover:opacity-80 transition-all duration-300"
+              style={{ gap: '0.5px', alignItems: 'center' }}
             >
               <Image
-                src="/logo-pink.png"
+                src="/Zentrais Flaticon 150x150-03.png"
                 alt="Zentrais Logo"
-                width={56}
-                height={56}
-                className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 transition-transform duration-300 group-hover:scale-110"
+                width={36}
+                height={36}
+                className="w-5 h-5 sm:w-7 sm:h-7 md:w-9 md:h-9 lg:w-11 lg:h-11 transition-transform duration-300 group-hover:scale-110 self-center"
               />
               <Image
                 src="/logo-1.png"
                 alt="Zentrais"
                 width={130}
                 height={130}
-                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-transform duration-300 group-hover:scale-110 object-contain"
+                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 xl:w-36 xl:h-36 transition-transform duration-300 group-hover:scale-110 object-contain self-center"
+                style={{ marginTop: '4px' }}
               />
             </Link>
             <div className="flex justify-end items-center gap-4">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { Button } from '../../components/ui/button';
 import { MessageSquare, Gavel, ShoppingBag, ArrowRight, CheckCircle2, Circle, Lock, Shield, CheckCircle, DollarSign, ChevronDown, Play } from 'lucide-react';
@@ -8,8 +9,14 @@ import Footer from '../../components/footer';
 import { useLanguage } from '../../contexts/language-context';
 import BetaUserForm from '../../components/forms/beta-user-form';
 
+const VideoYoutube = dynamic(() => import('../../components/video-youtube'), { ssr: false });
+
 export default function UserPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  useEffect(() => {
+    document.title = `Zentrais | ${t('pagetitle.user')}`;
+  }, [t, language]);
 
   const carouselSlides = [
     {
@@ -136,14 +143,11 @@ export default function UserPage() {
             <div className="absolute inset-0.5 bg-black/20 backdrop-blur-sm rounded-2xl"></div>
             
             {/* Video iframe */}
-            <iframe
+            <VideoYoutube
+              videoId="u2JkUcdGBKI"
+              controls={0}
               className="absolute top-0 left-0 w-full h-full rounded-2xl border-2 border-white/20 shadow-2xl group-hover:border-white/40 transition-all duration-300"
-              src="https://www.youtube.com/embed/u2JkUcdGBKI?si=eFcBGwlXDAliWeFb&controls=0"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
+            />
             
             {/* Shimmer effect on hover */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
