@@ -1,128 +1,213 @@
 'use client';
 
-import { useEffect, useMemo, memo, useCallback } from 'react';
+import { useEffect, useMemo, memo, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { Users, DollarSign, Handshake, Camera } from 'lucide-react';
 import { useLanguage } from '../contexts/language-context';
 
+// Pre-load critical components to avoid blank screen - use eager loading
 const VideoYoutube = dynamic(() => import('../components/video-youtube'), { 
   ssr: false,
-  loading: () => null
+  loading: () => (
+    <div 
+      className="absolute top-0 left-0 w-full h-full rounded-2xl bg-black/20 backdrop-blur-sm border-2 border-white/20 flex items-center justify-center"
+      style={{ minHeight: '100%' }}
+    >
+      <div className="text-white/50 text-sm">Loading...</div>
+    </div>
+  ),
 });
+
 const Countdown = dynamic(() => import('../components/countdown'), { 
   ssr: false,
-  loading: () => null
+  loading: () => (
+    <div className="mt-10 sm:mt-12 md:mt-14 h-32 bg-pink-500/10 backdrop-blur-sm rounded-2xl border border-pink-400 flex items-center justify-center">
+      <div className="text-white/50 text-sm">Loading countdown...</div>
+    </div>
+  ),
 });
 
 // Color classes constant - moved outside component to avoid recreation
 const colorClasses = {
   emerald: {
-    border: 'border-emerald-400/30',
-    borderHover: 'group-hover:border-emerald-400/60',
-    shadow: 'shadow-emerald-500/20',
-    shadowHover: 'group-hover:shadow-emerald-500/40',
+    // Glassmorphism colors - Emerald (Verde)
+    glassBg: 'rgba(16, 185, 129, 0.08)',
+    glassBgHover: 'rgba(16, 185, 129, 0.15)',
+    borderGradient: 'linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(5, 150, 105, 0.2) 50%, rgba(16, 185, 129, 0.1) 100%)',
+    borderGradientHover: 'linear-gradient(135deg, rgba(16, 185, 129, 0.6) 0%, rgba(5, 150, 105, 0.4) 50%, rgba(16, 185, 129, 0.3) 100%)',
+    glowColor: 'rgba(16, 185, 129, 0.5)',
+    glowColorHover: 'rgba(16, 185, 129, 0.8)',
     icon: 'text-emerald-400',
-    iconHover: 'group-hover:text-emerald-300',
-    glow: 'from-emerald-400/20 via-emerald-500/10 to-transparent',
-    particle: 'bg-emerald-400',
+    iconHover: 'text-emerald-300',
+    iconGlow: 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.6))',
+    iconGlowHover: 'drop-shadow(0 0 16px rgba(16, 185, 129, 0.9))',
   },
   indigo: {
-    border: 'border-indigo-400/30',
-    borderHover: 'group-hover:border-indigo-400/60',
-    shadow: 'shadow-indigo-500/20',
-    shadowHover: 'group-hover:shadow-indigo-500/40',
+    // Glassmorphism colors - Indigo (Azul)
+    glassBg: 'rgba(99, 102, 241, 0.08)',
+    glassBgHover: 'rgba(99, 102, 241, 0.15)',
+    borderGradient: 'linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(67, 56, 202, 0.2) 50%, rgba(99, 102, 241, 0.1) 100%)',
+    borderGradientHover: 'linear-gradient(135deg, rgba(99, 102, 241, 0.6) 0%, rgba(67, 56, 202, 0.4) 50%, rgba(99, 102, 241, 0.3) 100%)',
+    glowColor: 'rgba(99, 102, 241, 0.5)',
+    glowColorHover: 'rgba(99, 102, 241, 0.8)',
     icon: 'text-indigo-400',
-    iconHover: 'group-hover:text-indigo-300',
-    glow: 'from-indigo-400/20 via-indigo-500/10 to-transparent',
-    particle: 'bg-indigo-400',
+    iconHover: 'text-indigo-300',
+    iconGlow: 'drop-shadow(0 0 8px rgba(99, 102, 241, 0.6))',
+    iconGlowHover: 'drop-shadow(0 0 16px rgba(99, 102, 241, 0.9))',
   },
   amber: {
-    border: 'border-amber-400/30',
-    borderHover: 'group-hover:border-amber-400/60',
-    shadow: 'shadow-amber-500/20',
-    shadowHover: 'group-hover:shadow-amber-500/40',
+    // Glassmorphism colors - Amber (Naranja)
+    glassBg: 'rgba(245, 158, 11, 0.08)',
+    glassBgHover: 'rgba(245, 158, 11, 0.15)',
+    borderGradient: 'linear-gradient(135deg, rgba(245, 158, 11, 0.4) 0%, rgba(217, 119, 6, 0.2) 50%, rgba(245, 158, 11, 0.1) 100%)',
+    borderGradientHover: 'linear-gradient(135deg, rgba(245, 158, 11, 0.6) 0%, rgba(217, 119, 6, 0.4) 50%, rgba(245, 158, 11, 0.3) 100%)',
+    glowColor: 'rgba(245, 158, 11, 0.5)',
+    glowColorHover: 'rgba(245, 158, 11, 0.8)',
     icon: 'text-amber-400',
-    iconHover: 'group-hover:text-amber-300',
-    glow: 'from-amber-400/20 via-amber-500/10 to-transparent',
-    particle: 'bg-amber-400',
+    iconHover: 'text-amber-300',
+    iconGlow: 'drop-shadow(0 0 8px rgba(245, 158, 11, 0.6))',
+    iconGlowHover: 'drop-shadow(0 0 16px rgba(245, 158, 11, 0.9))',
   },
   pink: {
-    border: 'border-pink-400/30',
-    borderHover: 'group-hover:border-pink-400/60',
-    shadow: 'shadow-pink-500/20',
-    shadowHover: 'group-hover:shadow-pink-500/40',
+    // Glassmorphism colors - Pink (Fucsia)
+    glassBg: 'rgba(244, 114, 182, 0.08)',
+    glassBgHover: 'rgba(244, 114, 182, 0.15)',
+    borderGradient: 'linear-gradient(135deg, rgba(244, 114, 182, 0.4) 0%, rgba(219, 39, 119, 0.2) 50%, rgba(244, 114, 182, 0.1) 100%)',
+    borderGradientHover: 'linear-gradient(135deg, rgba(244, 114, 182, 0.6) 0%, rgba(219, 39, 119, 0.4) 50%, rgba(244, 114, 182, 0.3) 100%)',
+    glowColor: 'rgba(244, 114, 182, 0.5)',
+    glowColorHover: 'rgba(244, 114, 182, 0.8)',
     icon: 'text-pink-400',
-    iconHover: 'group-hover:text-pink-300',
-    glow: 'from-pink-400/20 via-pink-500/10 to-transparent',
-    particle: 'bg-pink-400',
+    iconHover: 'text-pink-300',
+    iconGlow: 'drop-shadow(0 0 8px rgba(244, 114, 182, 0.6))',
+    iconGlowHover: 'drop-shadow(0 0 16px rgba(244, 114, 182, 0.9))',
   },
 };
 
 // Memoized card component to prevent unnecessary re-renders
-const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: any, index: number, onNavigate: (route: string) => void, colors: typeof colorClasses[keyof typeof colorClasses] }) => {
+type CardType = {
+  id: string;
+  title: string;
+  description: string;
+  route: string;
+  color: keyof typeof colorClasses;
+  icon: React.ComponentType<{ className?: string }>;
+};
+
+const AudienceCard = memo(({ card, index, onNavigate, colors }: { card: CardType, index: number, onNavigate: (route: string) => void, colors: typeof colorClasses[keyof typeof colorClasses] }) => {
   const Icon = card.icon;
-  const handleClick = useCallback(() => onNavigate(card.route), [card.route, onNavigate]);
+  const handleClick = useCallback(() => {
+    onNavigate(card.route);
+  }, [card.route, onNavigate]);
   
   return (
     <div
-      className={`group relative p-6 sm:p-8 bg-white/10 backdrop-blur-sm rounded-xl shadow-lg ${colors.border} ${colors.borderHover} cursor-pointer overflow-hidden transition-all hover:bg-white/20 hover:shadow-2xl ${colors.shadow} ${colors.shadowHover} hover:scale-105 hover:-translate-y-1 animate-fade-in-up active:scale-105`}
+      className="group relative p-6 sm:p-8 rounded-2xl cursor-pointer overflow-hidden animate-fade-in-up"
       style={{ 
         animationDelay: `${index * 100 + 600}ms`,
         transform: 'translateZ(0)',
         backfaceVisibility: 'hidden',
         contain: 'layout style paint',
-        transitionDuration: '200ms'
+        // Glassmorphism base
+        background: colors.glassBg,
+        backdropFilter: 'blur(20px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        boxShadow: `0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 0 1px rgba(255, 255, 255, 0.05) inset`,
+        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.background = colors.glassBgHover;
+        e.currentTarget.style.transform = 'translateY(-4px) scale(1.02)';
+        e.currentTarget.style.boxShadow = `0 12px 40px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1) inset, 0 0 40px ${colors.glowColor}`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.background = colors.glassBg;
+        e.currentTarget.style.transform = 'translateY(0) scale(1)';
+        e.currentTarget.style.boxShadow = `0 8px 32px 0 rgba(0, 0, 0, 0.37), 0 0 0 1px rgba(255, 255, 255, 0.05) inset`;
       }}
       onClick={handleClick}
     >
-      {/* Animated border glow - reduced blur */}
+      {/* Gradient border with glow effect */}
       <div 
-        className={`absolute -inset-0.5 bg-gradient-to-r ${colors.glow} rounded-xl opacity-0 group-hover:opacity-100 blur-sm transition-opacity`}
-        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
-      ></div>
+        className="absolute -inset-[1px] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+        style={{ 
+          background: colors.borderGradientHover,
+          filter: `blur(8px)`,
+          transition: 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          zIndex: -1,
+        }}
+      />
       
-      {/* Simplified light animation */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${colors.glow} opacity-0 group-hover:opacity-100 transition-opacity`}
-        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
-      ></div>
-      
-      {/* Simplified shimmer - only on hover */}
-      <div
-        className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms' }}
-      ></div>
+      {/* Subtle border gradient */}
+      <div 
+        className="absolute -inset-[1px] rounded-2xl opacity-30 group-hover:opacity-60 transition-opacity duration-400 pointer-events-none"
+        style={{ 
+          background: colors.borderGradient,
+          zIndex: -1,
+        }}
+      />
 
-      {/* Reduced particles - only 2 instead of 3 */}
-      <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
-        style={{ transform: 'translateZ(0)', transitionDuration: '200ms' }}
-      >
-        <div 
-          className={`absolute top-4 left-4 w-2 h-2 ${colors.particle} rounded-full opacity-60`} 
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-        ></div>
-        <div 
-          className={`absolute bottom-4 right-4 w-2 h-2 ${colors.particle} rounded-full opacity-60`} 
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
-        ></div>
-      </div>
-      
+      {/* Inner glow on hover */}
+      <div
+        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-400 pointer-events-none"
+        style={{ 
+          background: `radial-gradient(circle at center, ${colors.glowColor} 0%, transparent 70%)`,
+          transition: 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}
+      />
+
+      {/* Shimmer effect on hover */}
+      <div
+        className="absolute -inset-10 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+        style={{ 
+          transform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          transition: 'opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}
+      />
+
+      {/* Content */}
       <div className="relative z-10">
-        <div className="relative inline-block" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
+        {/* Icon with glow effect */}
+        <div 
+          className="relative inline-block mb-3 sm:mb-4 group/icon" 
+          style={{ 
+            transform: 'translateZ(0)', 
+            backfaceVisibility: 'hidden',
+            filter: colors.iconGlow,
+            transition: 'filter 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
+          onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+            e.currentTarget.style.filter = colors.iconGlowHover;
+          }}
+          onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+            e.currentTarget.style.filter = colors.iconGlow;
+          }}
+        >
           <Icon
-            className={`w-10 h-10 sm:w-12 sm:h-12 ${colors.icon} ${colors.iconHover} mx-auto mb-3 sm:mb-4 transition-transform group-hover:scale-110 group-hover:rotate-3 drop-shadow-lg`}
-            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '200ms' }}
+            className={`w-10 h-10 sm:w-12 sm:h-12 ${colors.icon} mx-auto transition-all duration-400 group-hover:${colors.iconHover} group-hover:scale-110 group-hover:rotate-3`}
           />
         </div>
-        <h3 className="font-bold text-white text-base sm:text-lg mb-2 transition-opacity group-hover:text-white uppercase tracking-wider font-sans">
+        
+        {/* Title */}
+        <h3 className="font-bold text-white text-base sm:text-lg mb-2 transition-all duration-300 group-hover:text-white group-hover:tracking-wide uppercase tracking-wider font-sans">
           {card.title}
         </h3>
-        <p className="text-xs sm:text-sm text-white/90 transition-opacity group-hover:text-white font-sans">
+        
+        {/* Description */}
+        <p className="text-xs sm:text-sm text-white/80 transition-all duration-300 group-hover:text-white/95 font-sans leading-relaxed">
           {card.description}
         </p>
       </div>
+
+      {/* Corner accent dots */}
+      <div className="absolute top-3 right-3 w-1.5 h-1.5 rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-400"
+        style={{ background: colors.glowColor, boxShadow: `0 0 8px ${colors.glowColor}` }}
+      />
+      <div className="absolute bottom-3 left-3 w-1.5 h-1.5 rounded-full opacity-40 group-hover:opacity-80 transition-opacity duration-400"
+        style={{ background: colors.glowColor, boxShadow: `0 0 8px ${colors.glowColor}` }}
+      />
     </div>
   );
 });
@@ -132,9 +217,13 @@ AudienceCard.displayName = 'AudienceCard';
 export default function HomePage() {
   const router = useRouter();
   const { t } = useLanguage();
+  const hasSetTitle = useRef(false);
 
   useEffect(() => {
-    document.title = 'Zentrais';
+    if (!hasSetTitle.current) {
+      document.title = 'Zentrais';
+      hasSetTitle.current = true;
+    }
   }, []);
 
   // Memoized navigation handler
@@ -143,7 +232,7 @@ export default function HomePage() {
   }, [router]);
 
   // Memoize audienceCards to avoid recreation on every render
-  const audienceCards = useMemo(() => [
+  const audienceCards = useMemo<CardType[]>(() => [
     {
       id: 'user',
       title: t('home.card.user.title'),
@@ -178,56 +267,57 @@ export default function HomePage() {
     },
   ], [t]);
 
+  // Render content immediately, even before components are fully loaded
   return (
-    <div className="min-h-screen relative" style={{ transform: 'translateZ(0)', contain: 'layout style paint' }}>
-      {/* Space Background - 4K Quality */}
-      <div className="space-background">
-        <div className="space-stars"></div>
-        <div className="space-nebula-1"></div>
-        <div className="space-nebula-2"></div>
-        <div className="space-nebula-3"></div>
-        <div className="space-nebula-4"></div>
+    <div className="min-h-screen relative" style={{ transform: 'translateZ(0)', contain: 'layout style paint', willChange: 'auto', minHeight: '100vh' }}>
+      {/* Space Background - 4K Quality - Render immediately */}
+      <div className="space-background" style={{ contain: 'layout style paint', willChange: 'auto' }}>
+        <div className="space-stars" style={{ willChange: 'transform, opacity' }}></div>
+        <div className="space-nebula-1" style={{ willChange: 'transform, opacity' }}></div>
+        <div className="space-nebula-2" style={{ willChange: 'transform, opacity' }}></div>
+        <div className="space-nebula-3" style={{ willChange: 'transform, opacity' }}></div>
+        <div className="space-nebula-4" style={{ willChange: 'transform, opacity' }}></div>
         {/* Random premium gradients */}
-        <div className="premium-gradient-1"></div>
-        <div className="premium-gradient-2"></div>
-        <div className="premium-gradient-3"></div>
-        <div className="premium-gradient-4"></div>
-        <div className="premium-gradient-5"></div>
+        <div className="premium-gradient-1" style={{ willChange: 'transform, opacity' }}></div>
+        <div className="premium-gradient-2" style={{ willChange: 'transform, opacity' }}></div>
+        <div className="premium-gradient-3" style={{ willChange: 'transform, opacity' }}></div>
+        <div className="premium-gradient-4" style={{ willChange: 'transform, opacity' }}></div>
+        <div className="premium-gradient-5" style={{ willChange: 'transform, opacity' }}></div>
       </div>
       
-      {/* Content */}
-      <div className="relative z-10">
+      {/* Content - Render immediately */}
+      <div className="relative z-10" style={{ contain: 'layout style', visibility: 'visible' }}>
       {/* HEADLINE SECTION */}
-      <div className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 text-center relative">
+      <div className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-18 md:pt-20 text-center relative" style={{ contain: 'layout style', opacity: 1 }}>
         
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-2xl font-sans animate-fade-in-up relative group">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-2xl font-sans animate-fade-in-up relative group" style={{ contain: 'layout style', opacity: 1 }}>
           <span className="inline-block bg-gradient-to-r from-white via-cyan-300 via-purple-300 to-pink-300 bg-clip-text text-transparent bg-[length:200%_auto] relative">
             {t('home.headline')}
             {/* Subtle glow behind text - reduced blur */}
-            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10" style={{ transitionDuration: '300ms' }}></span>
+            <span className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-purple-400/20 to-pink-400/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10" style={{ transitionDuration: '300ms', willChange: 'opacity' }}></span>
           </span>
         </h1>
         <h2 
           className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-3 sm:mb-4 text-white/90 tracking-wide drop-shadow-lg font-sans animate-fade-in-up animation-delay-200 group/subheadline"
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style' }}
         >
           <span 
             className="inline-block bg-gradient-to-r from-cyan-200 via-white to-purple-200 bg-clip-text text-transparent transition-transform group-hover/subheadline:scale-105"
-            style={{ transitionDuration: '200ms' }}
+            style={{ transitionDuration: '200ms', willChange: 'transform' }}
           >
             {t('home.subheadline')}
           </span>
         </h2>
         <p 
           className="text-base sm:text-lg md:text-xl text-white/80 max-w-3xl mx-auto mb-8 sm:mb-10 drop-shadow font-sans animate-fade-in-up animation-delay-400 relative group/desc"
-          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+          style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style' }}
         >
-          <span className="relative inline-block transition-opacity group-hover/desc:text-white/95" style={{ transitionDuration: '200ms' }}>
+          <span className="relative inline-block transition-opacity group-hover/desc:text-white/95" style={{ transitionDuration: '200ms', willChange: 'opacity' }}>
             {t('home.description')}
             {/* Subtle shimmer effect on hover - optimized */}
             <span 
               className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer opacity-0 group-hover/desc:opacity-100 transition-opacity pointer-events-none"
-              style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms' }}
+              style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', transitionDuration: '300ms', willChange: 'transform, opacity' }}
             ></span>
           </span>
         </p>
@@ -242,7 +332,7 @@ export default function HomePage() {
           className="container mx-auto pt-8 sm:pt-12 md:pt-16 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6"
           style={{ contain: 'layout style' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 text-center" style={{ contain: 'layout style' }}>
             {audienceCards.map((card, index) => {
               const colors = colorClasses[card.color as keyof typeof colorClasses];
               return (
@@ -264,17 +354,17 @@ export default function HomePage() {
           />
 
           {/* YouTube Video Embed */}
-          <div className="mt-12 sm:mt-16 md:mt-20 flex justify-center animate-fade-in-up animation-delay-800">
+          <div className="mt-12 sm:mt-16 md:mt-20 flex justify-center animate-fade-in-up animation-delay-800" style={{ contain: 'layout style' }}>
             <div className="w-full max-w-6xl px-4 sm:px-6">
-              <div className="relative w-full group" style={{ paddingBottom: '56.25%' }}>
+              <div className="relative w-full group" style={{ paddingBottom: '56.25%', contain: 'layout style' }}>
                 {/* Glow effect behind video */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/30 via-purple-500/30 to-pink-500/30 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/30 via-purple-500/30 to-pink-500/30 rounded-2xl blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-300" style={{ willChange: 'opacity' }}></div>
                 
                 {/* Border gradient */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-2xl opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-2xl opacity-80 group-hover:opacity-100 transition-opacity duration-300" style={{ willChange: 'opacity' }}></div>
                 
                 {/* Inner shadow container */}
-                <div className="absolute inset-0.5 bg-black/20 backdrop-blur-sm rounded-2xl"></div>
+                <div className="absolute inset-0.5 bg-black/20 backdrop-blur-sm rounded-2xl" style={{ contain: 'layout style paint' }}></div>
                 
                 {/* Video iframe */}
                 <VideoYoutube
@@ -284,7 +374,7 @@ export default function HomePage() {
                 />
                 
                 {/* Shimmer effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500 rounded-2xl pointer-events-none"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500 rounded-2xl pointer-events-none" style={{ willChange: 'transform, opacity' }}></div>
               </div>
             </div>
           </div>
@@ -292,7 +382,7 @@ export default function HomePage() {
           {/* MICRO-PROOF BAR - optimized */}
           <div 
             className="mt-12 sm:mt-16 md:mt-20 pt-8 sm:pt-10 border-t border-white/20 animate-fade-in-up animation-delay-1000"
-            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+            style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden', contain: 'layout style' }}
           >
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-8 text-center text-white/70 text-sm sm:text-base">
               <div className="flex items-center gap-2 group/proof hover:text-white transition-opacity" style={{ transitionDuration: '200ms' }}>

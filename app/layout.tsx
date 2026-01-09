@@ -1,4 +1,5 @@
 import "./globals.css";
+import "glassmorphism/glassmorphic.css";
 import Navbar from "../components/navbar";
 import LanguageProviderWrapper from "../components/language-provider-wrapper";
 import FloatingCTA from "../components/floating-cta";
